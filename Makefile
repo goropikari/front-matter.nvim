@@ -25,3 +25,8 @@ devc-exec:
 setup:
 	mkdir -p ~/.local/share/$${NVIM_APPNAME:-nvim}/front-matter.nvim
 	curl -s https://api.github.com/repos/goropikari/front-matter.nvim/releases/latest | jq -r '.assets[0].browser_download_url' | xargs -I {} curl {} -L -o - | tar zx -C ~/.local/share/$${NVIM_APPNAME:-nvim}/front-matter.nvim
+
+.PHONY: build
+build:
+	mkdir -p ~/.local/share/$${NVIM_APPNAME:-nvim}/front-matter.nvim
+	go build -C cmd -o ~/.local/share/$${NVIM_APPNAME:-nvim}/front-matter.nvim/front-matter.nvim
