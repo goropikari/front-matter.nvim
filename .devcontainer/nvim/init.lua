@@ -48,9 +48,39 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   spec = {
     {
-      dir = '/workspaces/plugin-template.nvim',
+      'goropikari/front-matter.nvim',
       opts = {},
     },
+    {
+      'nvim-neotest/neotest',
+      version = '*',
+      dependencies = {
+        'nvim-neotest/nvim-nio',
+        'nvim-lua/plenary.nvim',
+        'antoinemadec/FixCursorHold.nvim',
+        'nvim-treesitter/nvim-treesitter',
+        { 'fredrikaverpil/neotest-golang', version = '*' },
+      },
+      config = function()
+        local config = { -- Specify configuration
+          go_test_args = {
+            '-v',
+            '-race',
+            '-count=1',
+            '-coverprofile=' .. vim.fn.getcwd() .. '/coverage.out',
+          },
+        }
+        require('neotest').setup({
+          adapters = {
+            require('neotest-golang')(config), -- Apply configuration
+          },
+        })
+      end,
+    },
+  },
+  dev = {
+    path = '/workspaces',
+    patterns = { 'goropikari' },
   },
   checker = { enabled = true },
 })

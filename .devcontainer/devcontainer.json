@@ -5,10 +5,8 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
   // "dockerFile": "Dockerfile",
   "features": {
-    "ghcr.io/goropikari/devcontainer-feature/neovim:1": {}
-  },
-  "containerEnv": {
-    "EDITOR": "nvim"
+    "ghcr.io/goropikari/devcontainer-feature/neovim:1": {},
+    "ghcr.io/devcontainers/features/go:1": {}
   },
   "mounts": [
     {
@@ -16,5 +14,10 @@
       "target": "/home/vscode/.config/nvim",
       "type": "bind"
     }
-  ]
+  ],
+  "remoteEnv": {
+    "EDITOR": "nvim",
+    "PATH": "${containerEnv:PATH}:/workspaces/front-matter.nvim/cmd"
+  },
+  "postCreateCommand": "cd /workspaces/front-matter.nvim/cmd && go build"
 }
