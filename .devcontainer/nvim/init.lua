@@ -50,6 +50,7 @@ require('lazy').setup({
     {
       'goropikari/front-matter.nvim',
       opts = {},
+      build = 'make setup',
     },
     {
       'nvim-neotest/neotest',
