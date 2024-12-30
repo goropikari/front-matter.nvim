@@ -49,7 +49,10 @@ require('lazy').setup({
   spec = {
     {
       'goropikari/front-matter.nvim',
-      opts = {},
+      dev = true,
+      opts = {
+        front_matter_path = '/workspaces/front-matter.nvim/cmd/front-matter.nvim',
+      },
       build = 'make setup',
     },
     {

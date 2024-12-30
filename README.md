@@ -31,6 +31,16 @@ local result = front_matter.get({
 })
 
 print(vim.inspect(result))
+-- {
+--   ["/path/to/markdown1.md"] = {
+--     tags = { "neovim", "front-matter" },
+--     title = "toml title"
+--   },
+--   ["/path/to/markdown2.md"] = {
+--     title = "yaml title",
+--     topics = { "neovim" }
+--   }
+-- }
 ```
 
 ### Parameters for `front_matter.get`

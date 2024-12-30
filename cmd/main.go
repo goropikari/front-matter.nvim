@@ -11,23 +11,23 @@ import (
 	"go.abhg.dev/goldmark/frontmatter"
 )
 
-func FrontMatters(v *nvim.Nvim, paths []string) ([]map[string]any, error) {
-	data := make([][]byte, len(paths))
-	for i, path := range paths {
+func FrontMatters(v *nvim.Nvim, paths []string) (map[string]map[string]any, error) {
+	data := make(map[string][]byte, len(paths))
+	for _, path := range paths {
 		datum, err := os.ReadFile(path)
 		if err != nil {
 			return nil, err
 		}
-		data[i] = datum
+		data[path] = datum
 	}
 
-	metadatas := make([]map[string]any, len(paths))
-	for i, datum := range data {
+	metadatas := make(map[string]map[string]any, len(paths))
+	for path, datum := range data {
 		md, err := FrontMatter(datum)
 		if err != nil {
 			return nil, err
 		}
-		metadatas[i] = md
+		metadatas[path] = md
 	}
 
 	return metadatas, nil
