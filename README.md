@@ -13,7 +13,7 @@
 
 ```lua
 {
-  'goropkikari/front-matter.nvim',
+  'goropikari/front-matter.nvim',
   opts = {},
   build = 'make setup',
 }
